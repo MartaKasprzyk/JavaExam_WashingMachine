@@ -1,4 +1,6 @@
-package com.javaexam.washingmachine;
+package com.javaexam.washingmachine.domain;
+
+import com.javaexam.washingmachine.AvailablePrograms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
