@@ -58,6 +58,10 @@ public class WashingMachine {
         System.out.println("New laundry set. Show status to view details.");
     }
 
+    public void setCurrentLaundry(Laundry currentLaundry) {
+        this.currentLaundry = currentLaundry;
+    }
+
     @Override
     public String toString() {
         JSONObject data = new JSONObject();
