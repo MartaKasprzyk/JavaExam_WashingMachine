@@ -2,10 +2,10 @@ package com.javaexam.washingmachine.domain;
 import org.json.JSONObject;
 
 public class LaundryProgram {
-    private int programNumber;
-    private String programName;
-    private int maxSpeed;
-    private int durationInMinutes;
+    private final int programNumber;
+    private final String programName;
+    private final int maxSpeed;
+    private final int durationInMinutes;
 
     public LaundryProgram(int programNumber, String programName, int maxSpeed, int durationInMinutes) {
         this.programNumber = programNumber;
@@ -18,33 +18,18 @@ public class LaundryProgram {
         return programNumber;
     }
 
-    public void setProgramNumber(int programNumber) {
-        this.programNumber = programNumber;
-    }
-
     public String getProgramName() {
         return programName;
-    }
-
-    public void setProgramName(String programName) {
-        this.programName = programName;
     }
 
     public int getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
     public int getDurationInMinutes() {
         return durationInMinutes;
     }
 
-    public void setDurationInMinutes(int durationInMinutes) {
-        this.durationInMinutes = durationInMinutes;
-    }
 
     @Override
     public String toString() {
