@@ -1,4 +1,8 @@
 package com.javaexam.washingmachine.domain;
+import com.javaexam.washingmachine.exception.InvalidDelayValueException;
+import com.javaexam.washingmachine.exception.SpeedOutOfRangeException;
+import com.javaexam.washingmachine.exception.TemperatureOutOfRangeException;
+import com.javaexam.washingmachine.exception.TemperatureUnitNotValidException;
 import org.json.JSONObject;
 
 public class Laundry{
