@@ -1,5 +1,7 @@
 package com.javaexam.washingmachine.service;
 
+import com.javaexam.washingmachine.domain.LaundryProgram;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
