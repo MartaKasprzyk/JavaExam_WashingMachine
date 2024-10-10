@@ -23,4 +23,8 @@ public class LaundryHistory {
             laundryHistory.stream().forEach(laundry -> System.out.println(laundry));
         }
     }
+
+    public List<LaundryRecord> getLaundryHistory() {
+        return laundryHistory;
+    }
 }

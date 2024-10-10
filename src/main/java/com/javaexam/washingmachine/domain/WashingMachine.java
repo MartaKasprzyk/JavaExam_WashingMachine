@@ -7,9 +7,9 @@ import java.util.List;
 
 public class WashingMachine {
     private List<LaundryProgram> programs;
-    private LaundryProgram currentProgram;
-    private Laundry currentLaundry;
-    private LaundryHistory history;
+    protected LaundryProgram currentProgram;
+    protected Laundry currentLaundry;
+    protected LaundryHistory history;
 
     public WashingMachine(List<LaundryProgram> programs) {
         setPrograms(programs);
@@ -111,7 +111,7 @@ public class WashingMachine {
     }
 
     public void doLaundry() {
-        history.addLaundryToHistory(new LaundryRecord(currentLaundry, currentProgram));
+        history.addLaundryToHistory(new LaundryRecord(currentLaundry, currentProgram, null));
         currentLaundry = null;
         System.out.println("Laundry done!");
     }

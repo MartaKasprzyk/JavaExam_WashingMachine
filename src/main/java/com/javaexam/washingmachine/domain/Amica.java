@@ -84,6 +84,14 @@ public class Amica extends WashingMachine implements ExtraPrograms {
         }
     }
 
+    @Override
+    public void doLaundry() {
+        history.addLaundryToHistory(new LaundryRecord(currentLaundry, currentProgram, checkCurrentCapacity()));
+        currentLaundry = null;
+        currentWeight = 0.0;
+        System.out.println("Laundry done!");
+    }
+
 }
 // TODO do not allow to doLaundry if current weight > max weight
 

@@ -3,18 +3,20 @@ package com.javaexam.washingmachine.domain;
 import org.json.JSONObject;
 
 public class LaundryRecord {
-    private LaundryProgram program;
-    private double temp;
-    private String unit;
-    private int speed;
-    private int laundryDelay;
+    public LaundryProgram program;
+    public double temp;
+    public String unit;
+    public int speed;
+    public int laundryDelay;
+    public int capacity;
 
-    public LaundryRecord(Laundry laundry, LaundryProgram program){
+    public LaundryRecord(Laundry laundry, LaundryProgram program, Integer capacity){
         this.temp = laundry.getTemp();
         this.unit = laundry.getTempUnit();
         this.speed = laundry.getSpeed();
         this.program = program;
         this.laundryDelay = laundry.getLaundryDelay();
+        this.capacity = capacity;
     }
 
     @Override
@@ -25,6 +27,7 @@ public class LaundryRecord {
         data.put("tempUnit", unit);
         data.put("speed", speed);
         data.put("laundryDelay", laundryDelay);
+        data.put("capacity", capacity);
         return data.toString();
     }
 }
