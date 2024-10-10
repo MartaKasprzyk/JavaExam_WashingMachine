@@ -1,106 +1,130 @@
 package com.javaexam.washingmachine.domain;
 
-import com.javaexam.washingmachine.AvailablePrograms;
+import com.javaexam.washingmachine.exception.*;
+import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
-public class WashingMachine implements Program {
-    private int programNumber;
-    private String programName;
+public class WashingMachine {
+    private List<LaundryProgram> programs;
+    private LaundryProgram currentProgram;
+    private Laundry currentLaundry;
+    private LaundryHistory history;
 
-    ArrayList<AvailablePrograms> availableProgramsValues = new ArrayList<>(Arrays.asList(AvailablePrograms.values()));
-
-    public int getProgram() {
-        return programNumber;
+    public WashingMachine(List<LaundryProgram> programs) {
+        setPrograms(programs);
+        this.currentProgram = this.programs.getFirst();
+        this.history = new LaundryHistory();
     }
 
-    public void setProgram(int programNumber) {
-        boolean programAllowed = checkIfProgramAllowed(programNumber);
+    public List<LaundryProgram> getPrograms() {
+        return programs;
+    }
 
-        if (programAllowed) {
-            this.programNumber = programNumber;
-            this.programName = getNameByValue(programNumber);
+    public void setPrograms(List<LaundryProgram> programs) {
+        this.programs = programs;
+    }
+
+    public LaundryProgram getProgram() {
+        return currentProgram;
+    }
+
+    public void setProgram(LaundryProgram currentProgram) throws InvalidProgramException, TemperatureOutOfRangeException, TemperatureUnitNotValidException, SpeedOutOfRangeException, InvalidDelayValueException {
+        if (programs.contains(currentProgram)){
+            this.currentProgram = currentProgram;
+            // reset Laundry settings
+            this.currentLaundry.setTemp(30.0);
+            this.currentLaundry.setTempUnit(TemperatureUnit.CELSIUS.getUnit());
+            this.currentLaundry.setSpeed(currentProgram, currentProgram.getMaxSpeed());
+            this.currentLaundry.setLaundryDelay(0);
         } else {
-            throw new IllegalArgumentException("Invalid program number.");
+            throw new InvalidProgramException();
         }
+
+    }
+
+    public Object showStatus() { // getCurrentLaundry
+        if (currentLaundry == null){
+            System.out.println("No laundry set.");
+            return null;
+        } else {
+            System.out.println("Program: " + currentProgram + " Laundry settings: " + currentLaundry);
+            return currentLaundry;
+        }
+    }
+
+    public void setNewLaundry() {
+        this.currentLaundry = new Laundry(currentProgram, 0.5, 1);
+        System.out.println("New laundry set. Show status to view details.");
     }
 
     @Override
-    public int nextProgram() {
-        int nextProgram = 0;
-        int currentProgram = getProgram();
-        boolean programAllowed = checkIfProgramAllowed(currentProgram);
+    public String toString() {
+        JSONObject data = new JSONObject();
+        data.put("number of programs", programs.size());
+        data.put("current program", getProgram());
+        data.put("current laundry", showStatus());
+        return data.toString();
+    }
 
-        if (programAllowed) {
-            int index = getIndex(currentProgram);
+    public void nextProgram() throws InvalidProgramException, InvalidDelayValueException, SpeedOutOfRangeException, TemperatureUnitNotValidException, TemperatureOutOfRangeException {
+        LaundryProgram nextProgram;
 
-            if (currentProgram == 10) {
-                nextProgram = availableProgramsValues.get(0).getAvailableProgram();
-            } else {
-                if (currentProgram >= 1 && currentProgram < 10) {
-                    nextProgram = availableProgramsValues.get(index + 1).getAvailableProgram();
-                } else {
-                    System.out.println("Sth went wrong");
-                }
-            }
+        if (currentProgram.getProgramNumber() == programs.size()) {
+            nextProgram = programs.getFirst();
         } else {
-            nextProgram = -1;
+            nextProgram = programs.get(getIndexOfCurrentProgram(currentProgram) + 1);
         }
-        return nextProgram;
+
+        setProgram(nextProgram);
     }
 
-    @Override
-    public int previousProgram() {
-        int previousProgram = 0;
-        int currentProgram = getProgram();
-        boolean programAllowed = checkIfProgramAllowed(currentProgram);
+    public void previousProgram() throws InvalidProgramException, InvalidDelayValueException, SpeedOutOfRangeException, TemperatureUnitNotValidException, TemperatureOutOfRangeException {
+        LaundryProgram previousProgram;
 
-        if (programAllowed) {
-            int index = getIndex(currentProgram);
-
-            if (currentProgram == 1) {
-                previousProgram = availableProgramsValues.get(9).getAvailableProgram();
-            } else {
-                if (currentProgram > 1 && currentProgram <= 10) {
-                    previousProgram = availableProgramsValues.get(index - 1).getAvailableProgram();
-                } else {
-                    System.out.println("Sth went wrong");
-                }
-            }
+        if (currentProgram.getProgramNumber() == 1) {
+            previousProgram = programs.getLast();
         } else {
-            previousProgram = -1;
+            previousProgram = programs.get(getIndexOfCurrentProgram(currentProgram) - 1);
         }
-        return previousProgram;
+
+        setProgram(previousProgram);
     }
 
-    private int getIndex(int programNumber) {
-        int index = -1;
-        for (int i = 0; i < availableProgramsValues.size(); i++) {
-            if (availableProgramsValues.get(i).getAvailableProgram() == programNumber) {
-                index = i;
-                break;
-            }
-        }
-        return index;
+    private int getIndexOfCurrentProgram(LaundryProgram currentProgram) {
+        return programs.indexOf(currentProgram);
     }
 
-    private boolean checkIfProgramAllowed(int programNumber) {
-        for (AvailablePrograms program : AvailablePrograms.values()) {
-            if (program.getAvailableProgram() == programNumber) {
-                return true;
-            }
-        }
-        return false;
+    public void showHistory() {
+        history.showHistory();
     }
 
-    private String getNameByValue(int programNumber){
+    public void doLaundry() {
+        history.addLaundryToHistory(new LaundryRecord(currentLaundry, currentProgram));
+        currentLaundry = null;
+    }
 
-        for (AvailablePrograms programName : AvailablePrograms.values()){
-            if (programName.getAvailableProgram() == programNumber) {
-                return programName.toString();
-            }
-        }
-        throw new IllegalArgumentException("Invalid program number");
+    public void tempUp() throws TemperatureUnitNotValidException, TemperatureOutOfRangeException {
+        currentLaundry.tempUp();
+    }
+
+    public void tempDown() throws TemperatureUnitNotValidException, TemperatureOutOfRangeException {
+        currentLaundry.tempDown();
+    }
+
+    public void convertTemp() throws TemperatureUnitNotValidException, TemperatureOutOfRangeException {
+        currentLaundry.convertTemp();
+    }
+
+    public void speedUp() throws SpeedOutOfRangeException {
+        currentLaundry.speedUp(currentProgram);
+    }
+
+    public void speedDown() throws SpeedOutOfRangeException {
+        currentLaundry.speedDown(currentProgram);
+    }
+
+    public void setLaundryDelay(int laundryDelay) throws InvalidDelayValueException {
+        currentLaundry.setLaundryDelay(laundryDelay);
     }
 }
