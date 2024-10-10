@@ -64,6 +64,57 @@ public class Main {
 //        // check list of all programs for WM
 //        machine.printPrograms();
 
+        // BEKO
+//        Beko beko = new Beko(programs);
+
+//        beko.showStatus();
+//        beko.showHistory();
+
+        // set new Laundry
+//        beko.setNewLaundry();
+//        beko.showStatus();
+
+        // modify Laundry
+//        beko.tempUp();
+//        beko.showStatus();
+//
+//        beko.tempDown();
+//        beko.showStatus();
+//
+//        beko.convertTemp();
+//        beko.showStatus();
+
+//        beko.speedUp();
+//        beko.showStatus();
+
+//        beko.speedDown();
+//        beko.showStatus();
+//
+//        beko.speedUp();
+//        beko.showStatus();
+
+        // change program
+//        beko.nextProgram();
+//        beko.showStatus();
+//
+//        beko.previousProgram();
+//        beko.showStatus();
+//
+//        beko.setProgram(programs.get(3));
+//        beko.showStatus();
+//
+//        beko.setLaundryDelay(15);
+//        beko.showStatus();
+
+        // do laundry -> save to history
+//        beko.doLaundry();
+//        beko.showHistory();
+//        beko.showStatus();
+//
+//        // check list of all programs for WM
+//        beko.printPrograms();
+
+
         // Whirpool
         List<LaundryProgram> programs15 = generator.createLaundryPrograms(15);
         Whirpool whirpool = new Whirpool(programs15);
