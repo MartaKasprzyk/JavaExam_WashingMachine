@@ -3,7 +3,7 @@ package com.javaexam.washingmachine;
 import com.javaexam.washingmachine.domain.LaundryProgram;
 import com.javaexam.washingmachine.domain.WashingMachine;
 import com.javaexam.washingmachine.exception.*;
-import com.javaexam.washingmachine.service.LaudryProgramGenerator;
+import com.javaexam.washingmachine.service.LaundryProgramGenerator;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws SpeedOutOfRangeException, TemperatureUnitNotValidException, TemperatureOutOfRangeException, InvalidDelayValueException, InvalidProgramException {
 
         // generate list of laundry programs
-        LaudryProgramGenerator generator = new LaudryProgramGenerator();
+        LaundryProgramGenerator generator = new LaundryProgramGenerator();
         List<LaundryProgram> programs = generator.createLaundryPrograms(10);
 
         // create new Washing Machine
