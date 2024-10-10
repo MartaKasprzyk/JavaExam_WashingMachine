@@ -49,7 +49,7 @@ public class Amica extends WashingMachine implements ExtraPrograms {
     }
 
     @Override
-    public void calculateLaundryDuration() {
+    public int calculateLaundryDuration() {
         LaundryProgram currentProgram = getProgram();
         int defaultDuration = currentProgram.getDurationInMinutes();
 
@@ -61,6 +61,7 @@ public class Amica extends WashingMachine implements ExtraPrograms {
             int expectedDuration = (int) (defaultDuration * (this.currentWeight/this.maxWeight));
             System.out.println("Expected laundry duration is: " + expectedDuration + "minutes.");
         }
+        return -1;
     }
 
     // TODO do not allow to doLaundry if current weight > max weight
