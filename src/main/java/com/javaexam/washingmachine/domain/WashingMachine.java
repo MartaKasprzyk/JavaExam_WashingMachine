@@ -33,10 +33,7 @@ public class WashingMachine {
         if (programs.contains(currentProgram)){
             this.currentProgram = currentProgram;
             // reset Laundry settings
-            this.currentLaundry.setTemp(30.0);
-            this.currentLaundry.setTempUnit(TemperatureUnit.CELSIUS.getUnit());
-            this.currentLaundry.setSpeed(currentProgram, currentProgram.getMaxSpeed());
-            this.currentLaundry.setLaundryDelay(0);
+            this.currentLaundry = null;
         } else {
             throw new InvalidProgramException();
         }

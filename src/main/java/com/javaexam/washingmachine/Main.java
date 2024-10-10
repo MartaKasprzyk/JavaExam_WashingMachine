@@ -2,7 +2,6 @@ package com.javaexam.washingmachine;
 
 import com.javaexam.washingmachine.domain.LaundryProgram;
 import com.javaexam.washingmachine.domain.WashingMachine;
-import com.javaexam.washingmachine.domain.Whirpool;
 import com.javaexam.washingmachine.exception.*;
 import com.javaexam.washingmachine.service.LaundryProgramGenerator;
 
@@ -46,11 +45,20 @@ public class Main {
 //        // change program
 //        machine.nextProgram();
 //        machine.showStatus();
-
+//
+//        machine.setNewLaundry();
+//        machine.showStatus();
+//
 //        machine.previousProgram();
 //        machine.showStatus();
-
+//
+//        machine.setNewLaundry();
+//        machine.showStatus();
+//
 //        machine.setProgram(programs.get(3));
+//        machine.showStatus();
+//
+//        machine.setNewLaundry();
 //        machine.showStatus();
 
 //        machine.setLaundryDelay(15);
@@ -63,6 +71,7 @@ public class Main {
 //
 //        // check list of all programs for WM
 //        machine.printPrograms();
+
 
         // BEKO
 //        Beko beko = new Beko(programs);
@@ -97,13 +106,19 @@ public class Main {
 //        beko.nextProgram();
 //        beko.showStatus();
 //
+//        beko.setNewLaundry();
+//        beko.showStatus();
+//
 //        beko.previousProgram();
+//        beko.showStatus();
+//
+//        beko.setNewLaundry();
 //        beko.showStatus();
 //
 //        beko.setProgram(programs.get(3));
 //        beko.showStatus();
 //
-//        beko.setLaundryDelay(15);
+//        beko.setNewLaundry();
 //        beko.showStatus();
 
         // do laundry -> save to history
@@ -114,17 +129,16 @@ public class Main {
 //        // check list of all programs for WM
 //        beko.printPrograms();
 
-
         // Whirpool
-        List<LaundryProgram> programs15 = generator.createLaundryPrograms(15);
-        Whirpool whirpool = new Whirpool(programs15);
+//        List<LaundryProgram> programs15 = generator.createLaundryPrograms(15);
+//        Whirpool whirpool = new Whirpool(programs15);
 
 //        whirpool.showStatus();
 //        whirpool.showHistory();
 
         // set new Laundry
-        whirpool.setNewLaundry();
-        whirpool.showStatus();
+//        whirpool.setNewLaundry();
+//        whirpool.showStatus();
 
         // modify Laundry
 //        whirpool.tempUp();
@@ -145,17 +159,23 @@ public class Main {
 //        whirpool.speedUp();
 //        whirpool.showStatus();
 
-        // change program
+//        // change program
 //        whirpool.nextProgram();
+//        whirpool.showStatus();
+//
+//        whirpool.setNewLaundry();
 //        whirpool.showStatus();
 //
 //        whirpool.previousProgram();
 //        whirpool.showStatus();
 //
+//        whirpool.setNewLaundry();
+//        whirpool.showStatus();
+//
 //        whirpool.setProgram(programs.get(3));
 //        whirpool.showStatus();
 //
-//        whirpool.setLaundryDelay(15);
+//        whirpool.setNewLaundry();
 //        whirpool.showStatus();
 
         // do laundry -> save to history
