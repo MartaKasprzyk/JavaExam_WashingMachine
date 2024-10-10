@@ -11,6 +11,7 @@ public class Beko extends WashingMachine implements ExtraPrograms {
     public Beko(List<LaundryProgram> programs, double maxWeight) {
         super(programs);
         this.maxWeight = maxWeight;
+        this.currentWeight = 0.0;
     }
 
     public double getMaxWeight() {
@@ -19,7 +20,7 @@ public class Beko extends WashingMachine implements ExtraPrograms {
     }
 
     public double getCurrentWeight() {
-        System.out.println("Current laundry weight: " + maxWeight + "kg");
+        System.out.println("Current laundry weight: " + currentWeight + "kg");
         return currentWeight;
     }
 
@@ -72,4 +73,23 @@ public class Beko extends WashingMachine implements ExtraPrograms {
         }
         return defaultDuration;
     }
+
+    @Override
+    public Object showStatus() {
+        Laundry currentLaundry = getCurrentLaundry();
+        LaundryProgram currentProgram = getProgram();
+
+        if (currentLaundry == null){
+            System.out.println("No laundry set.");
+            return null;
+        } else {
+            System.out.println("Program: " + currentProgram
+                    + " Laundry settings: " + currentLaundry
+                    + " Expected laundry duration: " + calculateLaundryDuration() + " min "
+                    + " Laundry weight: " + this.currentWeight + " kg "
+                    + " Capacity: " + checkCurrentCapacity() + " % ");
+            return currentLaundry;
+        }
+    }
 }
+// TODO do not allow to doLaundry if current weight > max weight

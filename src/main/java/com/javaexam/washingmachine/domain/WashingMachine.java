@@ -21,6 +21,12 @@ public class WashingMachine {
         return programs;
     }
 
+    public void printPrograms() {
+        for (LaundryProgram program : programs) {
+            System.out.println(program);
+        }
+    }
+
     public void setPrograms(List<LaundryProgram> programs) {
         this.programs = programs;
     }
@@ -29,9 +35,9 @@ public class WashingMachine {
         return currentProgram;
     }
 
-    public void setProgram(LaundryProgram currentProgram) throws InvalidProgramException, TemperatureOutOfRangeException, TemperatureUnitNotValidException, SpeedOutOfRangeException, InvalidDelayValueException {
-        if (programs.contains(currentProgram)){
-            this.currentProgram = currentProgram;
+    public void setProgram(LaundryProgram program) throws InvalidProgramException, TemperatureOutOfRangeException, TemperatureUnitNotValidException, SpeedOutOfRangeException, InvalidDelayValueException {
+        if (programs.contains(program)){
+            this.currentProgram = program;
             // reset Laundry settings
             this.currentLaundry = null;
         } else {
@@ -51,8 +57,12 @@ public class WashingMachine {
     }
 
     public void setNewLaundry() {
-        this.currentLaundry = new Laundry(currentProgram, 0.5, 1);
+        this.currentLaundry = new Laundry(currentProgram, 0.5, 1.0);
         System.out.println("New laundry set. Show status to view details.");
+    }
+
+    public Laundry getCurrentLaundry(){
+        return currentLaundry;
     }
 
     public void setCurrentLaundry(Laundry currentLaundry) {
@@ -103,6 +113,7 @@ public class WashingMachine {
     public void doLaundry() {
         history.addLaundryToHistory(new LaundryRecord(currentLaundry, currentProgram));
         currentLaundry = null;
+        System.out.println("Laundry done!");
     }
 
     public void tempUp() throws TemperatureUnitNotValidException, TemperatureOutOfRangeException {

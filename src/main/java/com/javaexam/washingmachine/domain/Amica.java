@@ -11,6 +11,7 @@ public class Amica extends WashingMachine implements ExtraPrograms {
     public Amica(List<LaundryProgram> programs, double maxCapacity) {
         super(programs);
         this.maxWeight = maxCapacity;
+        this.currentWeight = 0.0;
     }
 
     public double getMaxWeight() {
@@ -60,13 +61,29 @@ public class Amica extends WashingMachine implements ExtraPrograms {
         } else {
             int expectedDuration = (int) (defaultDuration * (this.currentWeight/this.maxWeight));
             System.out.println("Expected laundry duration is: " + expectedDuration + "minutes.");
+            return expectedDuration;
         }
-        return -1;
+        return defaultDuration;
     }
 
-    // TODO do not allow to doLaundry if current weight > max weight
-    // TODO add expectedDuration to showStatus
-    // TODO add currentWeight and currentCapacity to showStatus
+    @Override
+    public Object showStatus() {
+        Laundry currentLaundry = getCurrentLaundry();
+        LaundryProgram currentProgram = getProgram();
+
+        if (currentLaundry == null){
+            System.out.println("No laundry set.");
+            return null;
+        } else {
+            System.out.println("Program: " + currentProgram
+                    + " Laundry settings: " + currentLaundry
+                    + " Expected laundry duration: " + calculateLaundryDuration() + " min "
+                    + " Laundry weight: " + this.currentWeight + " kg "
+                    + " Capacity: " + checkCurrentCapacity() + " % ");
+            return currentLaundry;
+        }
+    }
 
 }
+// TODO do not allow to doLaundry if current weight > max weight
 
