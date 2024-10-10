@@ -1,27 +1,27 @@
 package com.javaexam.washingmachine;
 
+import com.javaexam.washingmachine.domain.Beko;
 import com.javaexam.washingmachine.domain.LaundryProgram;
-import com.javaexam.washingmachine.domain.WashingMachine;
 import com.javaexam.washingmachine.exception.*;
 import com.javaexam.washingmachine.service.LaundryProgramGenerator;
 
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws SpeedOutOfRangeException, TemperatureUnitNotValidException, TemperatureOutOfRangeException, InvalidDelayValueException, InvalidProgramException {
+    public static void main(String[] args) throws SpeedOutOfRangeException, TemperatureUnitNotValidException, TemperatureOutOfRangeException, InvalidDelayValueException, InvalidProgramException, InvalidWeightException {
 
         // generate list of laundry programs
         LaundryProgramGenerator generator = new LaundryProgramGenerator();
         List<LaundryProgram> programs = generator.createLaundryPrograms(10);
 
         // create new Washing Machine
-        WashingMachine machine = new WashingMachine(programs);
+//        WashingMachine machine = new WashingMachine(programs);
 //        machine.showStatus();
 //        machine.showHistory();
 
         // set new Laundry
-        machine.setNewLaundry();
-        machine.showStatus();
+//        machine.setNewLaundry();
+//        machine.showStatus();
 
         // modify Laundry
 //        machine.tempUp();
@@ -72,9 +72,88 @@ public class Main {
 //        // check list of all programs for WM
 //        machine.printPrograms();
 
+//        // test history - 30 records
+//        machine.setNewLaundry();
+//        machine.showStatus();
+//        machine.doLaundry();
+//        machine.showHistory();
+//        machine.showStatus();
+//
+//        System.out.println("---------------change to next program-------------------");
+//        machine.setNewLaundry();
+//        machine.showStatus();
+//        machine.nextProgram();
+//        machine.setNewLaundry();
+//        machine.showStatus();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//
+//        System.out.println("-------------------------------------------------------");
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//
+//        System.out.println("-------------------------------------------------------");
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//        machine.setNewLaundry();
+//        machine.doLaundry();
+//
+//        machine.showHistory();
+
 
         // BEKO
-//        Beko beko = new Beko(programs);
+        Beko beko = new Beko(programs, 7);
 
 //        beko.showStatus();
 //        beko.showHistory();
@@ -83,14 +162,27 @@ public class Main {
 //        beko.setNewLaundry();
 //        beko.showStatus();
 
-        // modify Laundry
+        // set weight, check capacity, cal expected laundry duration
+//        beko.setCurrentWeight(5.0);
+//        beko.getCurrentWeight();
+//        beko.checkCurrentCapacity();
+//        beko.calculateLaundryDuration();
+//        beko.showStatus();
+//
+//        // modify Laundry
 //        beko.tempUp();
 //        beko.showStatus();
-//
+////
 //        beko.tempDown();
 //        beko.showStatus();
-//
+////
 //        beko.convertTemp();
+//        beko.showStatus();
+//
+//        beko.tempUp();
+//        beko.showStatus();
+////
+//        beko.tempDown();
 //        beko.showStatus();
 
 //        beko.speedUp();
