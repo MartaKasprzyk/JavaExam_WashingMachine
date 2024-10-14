@@ -1,7 +1,7 @@
 package com.javaexam.washingmachine;
 
-import com.javaexam.washingmachine.domain.Beko;
 import com.javaexam.washingmachine.domain.LaundryProgram;
+import com.javaexam.washingmachine.domain.WashingMachine;
 import com.javaexam.washingmachine.exception.*;
 import com.javaexam.washingmachine.service.LaundryProgramGenerator;
 
@@ -15,9 +15,9 @@ public class Main {
         List<LaundryProgram> programs = generator.createLaundryPrograms(10);
 
         // create new Washing Machine
-//        WashingMachine machine = new WashingMachine(programs);
-//        machine.showStatus();
-//        machine.showHistory();
+        WashingMachine machine = new WashingMachine(programs);
+        machine.showStatus();
+        machine.showHistory();
 
         // set new Laundry
 //        machine.setNewLaundry();
@@ -73,87 +73,28 @@ public class Main {
 //        machine.printPrograms();
 
 //        // test history - 30 records
-//        machine.setNewLaundry();
-//        machine.showStatus();
-//        machine.doLaundry();
-//        machine.showHistory();
-//        machine.showStatus();
-//
-//        System.out.println("---------------change to next program-------------------");
-//        machine.setNewLaundry();
-//        machine.showStatus();
-//        machine.nextProgram();
-//        machine.setNewLaundry();
-//        machine.showStatus();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//
-//        System.out.println("-------------------------------------------------------");
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//
-//        System.out.println("-------------------------------------------------------");
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//        machine.setNewLaundry();
-//        machine.doLaundry();
-//
-//        machine.showHistory();
+        machine.setNewLaundry();
+        machine.showStatus();
+        machine.doLaundry();
+        machine.showHistory();
+        machine.showStatus();
+
+        // change program
+        machine.nextProgram();
+        machine.setNewLaundry();
+        machine.showStatus();
+        machine.doLaundry();
+
+        for (int i = 0; i < 29; i++){
+            machine.setNewLaundry();
+            machine.doLaundry();
+        }
+
+        machine.showHistory();
 
 
         // BEKO
-        Beko beko = new Beko(programs, 7);
+//        Beko beko = new Beko(programs, 7);
 
 //        beko.showStatus();
 //        beko.showHistory();
