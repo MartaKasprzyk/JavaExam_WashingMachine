@@ -106,6 +106,10 @@ public class WashingMachine {
         return programs.indexOf(currentProgram);
     }
 
+    public LaundryHistory getHistory() {
+        return history;
+    }
+
     public void showHistory() {
         history.showHistory();
     }

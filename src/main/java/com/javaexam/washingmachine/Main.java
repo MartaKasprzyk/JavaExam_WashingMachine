@@ -1,10 +1,14 @@
 package com.javaexam.washingmachine;
 
+import com.javaexam.washingmachine.domain.Beko;
 import com.javaexam.washingmachine.domain.LaundryProgram;
+import com.javaexam.washingmachine.domain.LaundryRecord;
 import com.javaexam.washingmachine.exception.*;
 import com.javaexam.washingmachine.service.LaundryProgramGenerator;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws SpeedOutOfRangeException, TemperatureUnitNotValidException, TemperatureOutOfRangeException, InvalidDelayValueException, InvalidProgramException, InvalidWeightException {
@@ -17,30 +21,30 @@ public class Main {
 //        WashingMachine machine = new WashingMachine(programs);
 //        machine.showStatus();
 //        machine.showHistory();
-
-        // set new Laundry
+//
+//        // set new Laundry
 //        machine.setNewLaundry();
 //        machine.showStatus();
-
-        // modify Laundry
+//
+//        // modify Laundry
 //        machine.tempUp();
 //        machine.showStatus();
-
+//
 //        machine.tempDown();
 //        machine.showStatus();
-
+//
 //        machine.convertTemp();
 //        machine.showStatus();
-
+//
 //        machine.speedUp();
 //        machine.showStatus();
-
+//
 //        machine.speedDown();
 //        machine.showStatus();
 //
 //        machine.speedUp();
 //        machine.showStatus();
-
+//
 //        // change program
 //        machine.nextProgram();
 //        machine.showStatus();
@@ -59,11 +63,11 @@ public class Main {
 //
 //        machine.setNewLaundry();
 //        machine.showStatus();
-
+//
 //        machine.setLaundryDelay(15);
 //        machine.showStatus();
-
-//        // do laundry -> save to history
+//
+//       // do laundry -> save to history
 //        machine.doLaundry();
 //        machine.showHistory();
 //        machine.showStatus();
@@ -112,7 +116,7 @@ public class Main {
 //        // modify Laundry
 //        beko.tempUp();
 //        beko.showStatus();
-////
+//
 //        beko.tempDown();
 //        beko.showStatus();
 ////
@@ -287,5 +291,90 @@ public class Main {
         // check list of all programs for WM
 //        whirpool.printPrograms();
 
+        // test optimize
+        Beko beko = new Beko(programs, 7);
+        beko.setNewLaundry();
+        beko.tempUp();
+        beko.setCurrentWeight(1);
+        beko.speedDown();
+        beko.speedDown();
+        beko.doLaundry();
+        beko.setNewLaundry();
+        beko.setCurrentWeight(5);
+        beko.speedDown();
+        beko.doLaundry();
+        beko.setNewLaundry();
+        beko.tempUp();
+        beko.tempUp();
+        beko.setCurrentWeight(2);
+        beko.doLaundry();
+
+        beko.nextProgram();
+        beko.setNewLaundry();
+        beko.tempUp();
+        beko.setCurrentWeight(1);
+        beko.speedDown();
+        beko.speedDown();
+        beko.doLaundry();
+        beko.setNewLaundry();
+        beko.setCurrentWeight(5);
+        beko.speedDown();
+        beko.doLaundry();
+        beko.setNewLaundry();
+        beko.tempUp();
+        beko.tempUp();
+        beko.setCurrentWeight(2);
+        beko.doLaundry();
+
+        beko.nextProgram();
+        beko.setNewLaundry();
+        beko.tempUp();
+        beko.setCurrentWeight(1);
+        beko.speedDown();
+        beko.speedDown();
+        beko.doLaundry();
+
+//        beko.setNewLaundry();
+//        beko.tempUp();
+//        beko.setCurrentWeight(6);
+//        beko.speedDown();
+//        beko.speedDown();
+//        beko.doLaundry();
+//        beko.setNewLaundry();
+//        beko.setCurrentWeight(6);
+//        beko.speedDown();
+//        beko.doLaundry();
+//        beko.setNewLaundry();
+//        beko.tempUp();
+//        beko.tempUp();
+//        beko.setCurrentWeight(6);
+//        beko.doLaundry();
+
+        beko.showHistory();
+
+        optimize(beko.getHistory().getLaundryHistory());
     }
+
+    public static void optimize(List<LaundryRecord> laundryHistory) {
+        boolean unoptimizable = laundryHistory.stream().allMatch(record -> record.capacity > 51);
+        if (unoptimizable) {
+            System.out.println("Laundry is impossible to optimize");
+        } else {
+            Map<String, List<LaundryRecord>> recordsByProgram = laundryHistory.stream()
+                    .collect(Collectors.groupingBy(record -> record.program.getProgramName()));
+
+            recordsByProgram.forEach((programName, records) -> {
+                long count = records.stream().filter(record -> record.capacity < 51).count();
+                if (count > 1) {
+                    Double lowestTemp = records.stream().map(record -> record.temp).sorted().findFirst().get();
+                    Integer lowestSpeed = records.stream().map(record -> record.speed).sorted().findFirst().get();
+
+                    System.out.println("Zaoszczędziłbyś piorąc rzadziej programem " + programName +
+                            " w temperaturze " + lowestTemp + " i o obrotach " + lowestSpeed);
+
+                }
+            });
+        }
+    }
+
 }
