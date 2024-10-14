@@ -8,7 +8,7 @@ public class LaundryRecord {
     public String unit;
     public int speed;
     public int laundryDelay;
-    public int capacity;
+    public Integer capacity;
 
     public LaundryRecord(Laundry laundry, LaundryProgram program, Integer capacity){
         this.temp = laundry.getTemp();
