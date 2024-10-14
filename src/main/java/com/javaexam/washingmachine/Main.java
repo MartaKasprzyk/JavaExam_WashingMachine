@@ -1,7 +1,6 @@
 package com.javaexam.washingmachine;
 
 import com.javaexam.washingmachine.domain.LaundryProgram;
-import com.javaexam.washingmachine.domain.WashingMachine;
 import com.javaexam.washingmachine.exception.*;
 import com.javaexam.washingmachine.service.LaundryProgramGenerator;
 
@@ -15,9 +14,9 @@ public class Main {
         List<LaundryProgram> programs = generator.createLaundryPrograms(10);
 
         // create new Washing Machine
-        WashingMachine machine = new WashingMachine(programs);
-        machine.showStatus();
-        machine.showHistory();
+//        WashingMachine machine = new WashingMachine(programs);
+//        machine.showStatus();
+//        machine.showHistory();
 
         // set new Laundry
 //        machine.setNewLaundry();
@@ -73,24 +72,24 @@ public class Main {
 //        machine.printPrograms();
 
 //        // test history - 30 records
-        machine.setNewLaundry();
-        machine.showStatus();
-        machine.doLaundry();
-        machine.showHistory();
-        machine.showStatus();
-
-        // change program
-        machine.nextProgram();
-        machine.setNewLaundry();
-        machine.showStatus();
-        machine.doLaundry();
-
-        for (int i = 0; i < 29; i++){
-            machine.setNewLaundry();
-            machine.doLaundry();
-        }
-
-        machine.showHistory();
+//        machine.setNewLaundry();
+//        machine.showStatus();
+//        machine.doLaundry();
+//        machine.showHistory();
+//        machine.showStatus();
+//
+//        // change program
+//        machine.nextProgram();
+//        machine.setNewLaundry();
+//        machine.showStatus();
+//        machine.doLaundry();
+//
+//        for (int i = 0; i < 29; i++){
+//            machine.setNewLaundry();
+//            machine.doLaundry();
+//        }
+//
+//        machine.showHistory();
 
 
         // BEKO
@@ -103,7 +102,7 @@ public class Main {
 //        beko.setNewLaundry();
 //        beko.showStatus();
 
-        // set weight, check capacity, cal expected laundry duration
+        // set weight, check capacity, call expected laundry duration
 //        beko.setCurrentWeight(5.0);
 //        beko.getCurrentWeight();
 //        beko.checkCurrentCapacity();
@@ -161,6 +160,75 @@ public class Main {
 //
 //        // check list of all programs for WM
 //        beko.printPrograms();
+
+        // AMICA
+//        Amica amica = new Amica(programs, 5);
+
+//        amica.showStatus();
+//        amica.showHistory();
+
+        // set new Laundry
+//        amica.setNewLaundry();
+//        amica.showStatus();
+
+        // set weight, check capacity, call expected laundry duration
+//        amica.setCurrentWeight(5.0);
+//        amica.getCurrentWeight();
+//        amica.checkCurrentCapacity();
+//        amica.calculateLaundryDuration();
+//        amica.showStatus();
+//
+//        // modify Laundry
+//        amica.tempUp();
+//        amica.showStatus();
+////
+//        amica.tempDown();
+//        amica.showStatus();
+////
+//        amica.convertTemp();
+//        amica.showStatus();
+//
+//        amica.tempUp();
+//        amica.showStatus();
+////
+//        amica.tempDown();
+//        amica.showStatus();
+
+//        amica.speedUp();
+//        amica.showStatus();
+
+//        amica.speedDown();
+//        amica.showStatus();
+//
+//        amica.speedUp();
+//        amica.showStatus();
+
+        // change program
+//        amica.nextProgram();
+//        amica.showStatus();
+//
+//        amica.setNewLaundry();
+//        amica.showStatus();
+//
+//        amica.previousProgram();
+//        amica.showStatus();
+//
+//        amica.setNewLaundry();
+//        amica.showStatus();
+//
+//        amica.setProgram(programs.get(3));
+//        amica.showStatus();
+//
+//        amica.setNewLaundry();
+//        amica.showStatus();
+
+        // do laundry -> save to history
+//        amica.doLaundry();
+//        amica.showHistory();
+//        amica.showStatus();
+//
+//        // check list of all programs for WM
+//        amica.printPrograms();
 
         // Whirpool
 //        List<LaundryProgram> programs15 = generator.createLaundryPrograms(15);
